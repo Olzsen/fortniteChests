@@ -1,1 +1,66 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Fortnite Chest Tracker"><title>Fortnite Chest Tracker</title><link rel="stylesheet" href="style.css"></head><body><main class="container"><header class="hero"><div class="badge">FORTNITE CHEST TRACKER</div><h1>Сколько сундуков ты открыл?</h1><p>Введи Epic Games ник и посмотри статистику по сезонам.</p><form id="searchForm" class="search"><input id="nickname" autocomplete="off" placeholder="Epic Games nickname" required><button>НАЙТИ</button></form><p id="status" class="status"></p></header><section id="profile" class="hidden"><div class="profile-head"><div><div class="eyebrow">ИГРОК</div><h2 id="playerName">—</h2></div><div id="updated" class="muted"></div></div><div class="cards"><article class="card"><span>🏆 ВСЕГО</span><strong id="allTime">0</strong><small>сундуков</small></article><article class="card accent"><span>🔥 ТЕКУЩИЙ СЕЗОН</span><strong id="current">0</strong><small>сундуков</small></article><article class="card"><span>🎮 МАТЧИ</span><strong id="matches">0</strong><small>матчей</small></article><article class="card"><span>📦 В СРЕДНЕМ</span><strong id="average">0</strong><small>сундуков / матч</small></article></div><section class="panel"><div class="panel-title"><h3>Сезоны</h3><span id="seasonCount"></span></div><div id="seasons" class="seasons"></div></section></section><section id="empty" class="empty"><div class="chest">📦</div><h2>Введите никнейм</h2><p>Статистика появится здесь после поиска.</p></section><footer><span>Fortnite Chest Tracker</span><a href="https://github.com/Olzsen/fortniteChests" target="_blank" rel="noreferrer">GitHub</a></footer></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Fortnite Chest Tracker — подсчёт открытых сундуков по replay-файлам">
+  <title>Fortnite Chest Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="badge">FORTNITE CHEST TRACKER</div>
+      <h1>Сколько сундуков ты открыл?</h1>
+      <p>Ищи статистику по нику или добавь матчи из своих Fortnite replay-файлов.</p>
+      <form id="searchForm" class="search">
+        <input id="nickname" autocomplete="off" placeholder="Точный Epic Games nickname" required>
+        <button type="submit">НАЙТИ</button>
+      </form>
+      <p id="status" class="status" role="status"></p>
+    </header>
+
+    <section id="profile" class="hidden">
+      <div class="profile-head">
+        <div><div class="eyebrow">ИГРОК</div><h2 id="playerName">—</h2></div>
+        <div id="updated" class="muted"></div>
+      </div>
+      <div class="cards">
+        <article class="card"><span>🏆 ВСЕГО</span><strong id="allTime">0</strong><small>сундуков</small></article>
+        <article class="card accent"><span>🔥 ПОСЛЕДНИЙ ИМПОРТ</span><strong id="current">0</strong><small>сундуков</small></article>
+        <article class="card"><span>🎮 МАТЧИ</span><strong id="matches">0</strong><small>матчей</small></article>
+        <article class="card"><span>📦 В СРЕДНЕМ</span><strong id="average">0</strong><small>сундуков / матч</small></article>
+      </div>
+      <section class="panel">
+        <div class="panel-title"><h3>Сезоны / периоды</h3><span id="seasonCount"></span></div>
+        <div id="seasons" class="seasons"></div>
+      </section>
+    </section>
+
+    <section id="empty" class="empty">
+      <div class="chest">📦</div>
+      <h2>Пока нет статистики</h2>
+      <p>Никнейм сам по себе не даёт доступ к истории сундуков. Добавь replay-матчи через сканер ниже.</p>
+    </section>
+
+    <section class="panel import-panel">
+      <div class="panel-title"><h3>Добавить свои матчи</h3><span class="muted">Импорт CSV</span></div>
+      <p>1. Скачай <a href="https://github.com/Tanron009/fortnite-chest-scan/releases/tag/v1" target="_blank" rel="noreferrer">ChestScan для Windows</a>.<br>
+      2. Скопируй replay-файлы из <code>%LOCALAPPDATA%\FortniteGame\Saved\Demos</code> в отдельную папку и запусти сканер с параметром <code>--csv results.csv</code>. Если нужно считать конкретный ник, используй <code>--name "ТВОЙ_НИК"</code>.<br>
+      3. Выбери CSV здесь. Укажи ник и название сезона/периода.</p>
+      <form id="importForm" class="import-form">
+        <label>Epic nickname<input id="importNickname" required placeholder="Твой ник"></label>
+        <label>Сезон / период<input id="importSeason" required placeholder="Например: Глава 7 — Сезон 1"></label>
+        <label>CSV из ChestScan<input id="csvFile" type="file" accept=".csv,text/csv" required></label>
+        <button type="submit">ИМПОРТИРОВАТЬ МАТЧИ</button>
+      </form>
+      <p id="importStatus" class="status" role="status"></p>
+      <button id="exportButton" type="button" class="secondary">Скачать базу игроков JSON</button>
+      <p class="muted small">Импорт сначала сохраняется только в этом браузере. Чтобы статистика стала видна другу на сайте, скачай JSON и замени им файл <code>data/players.json</code> в GitHub-репозитории.</p>
+    </section>
+
+    <footer><span>Fortnite Chest Tracker · фанатский проект, не связан с Epic Games</span><a href="https://github.com/Olzsen/fortniteChests" target="_blank" rel="noreferrer">GitHub проекта</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
