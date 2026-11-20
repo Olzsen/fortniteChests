@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-20T00:00:00Z",
+  "players": {
+    "demo": {
+      "nickname": "DemoPlayer",
+      "all_time_chests": 1337,
+      "current_season_chests": 284,
+      "matches": 312,
+      "updated_at": "2026-11-20T00:00:00Z",
+      "seasons": [
+        {"name":"Текущий сезон","chests":284,"matches":61},
+        {"name":"Предыдущий сезон","chests":510,"matches":104},
+        {"name":"Сезон 2","chests":543,"matches":147}
+      ]
+    }
+  }
+}
